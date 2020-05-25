@@ -13,13 +13,12 @@
 <body>
     <div id="app">
         <section class="section">
-            <div class="container has-text-centered">
-                <h1 class="title">Face Editor</h1>
-                <h1 class="subtitle" v-if="!loaded">Loading...</h1>
-
+            <h1 class="title has-text-centered">Face Editor</h1>
+            <h1 class="subtitle has-text-centered" v-if="!loaded">Loading...</h1>
+            <div class="top has-text-centered">
                 <div><canvas ref="canvas"></canvas></div>
             </div>
-            <hr>
+            <hr class="hr">
             <div class="container has-text-centered">
                 <button @click="generateRandom" class="button">Random</button>
                 <button @click="goToMean" class="button">Mean</button>
@@ -28,8 +27,8 @@
             <div class="container">
                 <div class="columns is-multiline">
                     <div class="column is-2" v-for="(value, idx) in latent">
-                        <b-field :label="`PC ${idx + 1}`">
-                            <b-slider :min="mins[idx]" :max="maxs[idx]" :step="1" v-model="value.v"></b-slider>
+                        <b-field :label="`PC ${idx + 1}`" v-if="idx < 127">
+                            <b-slider :min="mins[idx]" :max="maxs[idx]" :step="0.2" v-model="value.v"></b-slider>
                         </b-field>
                     </div>
                 </div>

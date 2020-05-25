@@ -34,7 +34,7 @@ const app = new Vue({
             this.goToMean();
         },
         goToMean() {
-            this.latent = [...Array(300).keys()].map((i) => ({ v: 0 }));
+            this.latent = MEANS.map((v) => ({ v }));
         },
         async generateRandom() {
             let latent = [];
@@ -42,7 +42,7 @@ const app = new Vue({
                 latent.push(tf.randomNormal([1], 0, STDS[i]));
             }
             latent = tf.stack(latent, (axis = 1));
-            this.latent = Array.from(await latent.data()).map((e) => ({ v: e }));
+            this.latent = Array.from(await latent.data()).map((v) => ({ v }));
         },
     },
 });
