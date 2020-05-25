@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <title>Face Editor</title>
+    <link href="main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <section class="section">
+            <div class="container has-text-centered">
+                <h1 class="title">Face Editor</h1>
+                <h1 class="subtitle" v-if="!loaded">Loading...</h1>
+
+                <div><canvas ref="canvas"></canvas></div>
+            </div>
+            <hr>
+            <div class="container has-text-centered">
+                <button @click="generateRandom" class="button">Random</button>
+                <button @click="goToMean" class="button">Mean</button>
+            </div>
+            <hr>
+            <div class="container">
+                <div class="columns is-multiline">
+                    <div class="column is-2" v-for="(value, idx) in latent">
+                        <b-field :label="`PC ${idx + 1}`">
+                            <b-slider :min="mins[idx]" :max="maxs[idx]" :step="1" v-model="value.v"></b-slider>
+                        </b-field>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <script src="npy.js"></script>
+    <script src="distr.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
