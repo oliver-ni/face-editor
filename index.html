@@ -28,7 +28,7 @@
                 <div class="columns is-multiline">
                     <div class="column is-2" v-for="(value, idx) in latent">
                         <b-field :label="`PC ${idx + 1} (${EXP[idx]}%)`">
-                            <b-slider :min="mins[idx]" :max="maxs[idx]" :step="0.2" v-model="value.v"></b-slider>
+                            <b-slider :min="mins[idx]" :max="maxs[idx]" :step="(maxs[idx] - mins[idx]) / 100" v-model="value.v"></b-slider>
                         </b-field>
                     </div>
                 </div>
